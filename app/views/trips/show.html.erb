@@ -2,7 +2,7 @@
 
 trails <br>
 <% @trails.each do |trail| %>
-  Name: <%= trail.name %> <br>
+  Name: <%= link_to trail.name, trail_path(trail) %> <br>
   Address: <%= trail.address %> <br>
   Length: <%= trail.length %> <br>
   <% end %>

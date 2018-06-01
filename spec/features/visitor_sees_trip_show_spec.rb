@@ -4,8 +4,8 @@ describe 'visitor visits trip show page' do
     trip1 = Trip.create(name: 'happy trip')
 
     hike1 = trip1.trails.create(name:'one', address:'123', length: 1)
-    hike2 = trip1.trails.create(name:'one', address:'124', length: 2)
-    hike3 = trip1.trails.create(name:'one', address:'125', length: 3)
+    hike2 = trip1.trails.create(name:'two', address:'124', length: 2)
+    hike3 = trip1.trails.create(name:'three', address:'125', length: 3)
 
     visit trip_path(trip1)
 
@@ -25,8 +25,8 @@ describe 'visitor visits trip show page' do
     trip1 = Trip.create(name: 'happy trip')
 
     hike1 = trip1.trails.create(name:'one', address:'123', length: 1)
-    hike2 = trip1.trails.create(name:'one', address:'124', length: 2)
-    hike3 = trip1.trails.create(name:'one', address:'125', length: 3)
+    hike2 = trip1.trails.create(name:'two', address:'124', length: 2)
+    hike3 = trip1.trails.create(name:'three', address:'125', length: 3)
 
     visit trip_path(trip1)
 
@@ -37,8 +37,8 @@ describe 'visitor visits trip show page' do
     trip1 = Trip.create(name: 'happy trip')
 
     hike1 = trip1.trails.create(name:'one', address:'123', length: 1)
-    hike2 = trip1.trails.create(name:'one', address:'124', length: 2)
-    hike3 = trip1.trails.create(name:'one', address:'125', length: 3)
+    hike2 = trip1.trails.create(name:'two', address:'124', length: 2)
+    hike3 = trip1.trails.create(name:'three', address:'125', length: 3)
 
     visit trip_path(trip1)
 
@@ -49,8 +49,8 @@ describe 'visitor visits trip show page' do
     trip1 = Trip.create(name: 'happy trip')
 
     hike1 = trip1.trails.create(name:'one', address:'123', length: 1)
-    hike2 = trip1.trails.create(name:'one', address:'124', length: 2)
-    hike3 = trip1.trails.create(name:'one', address:'125', length: 3)
+    hike2 = trip1.trails.create(name:'two', address:'124', length: 2)
+    hike3 = trip1.trails.create(name:'three', address:'125', length: 3)
 
     visit trip_path(trip1)
 
@@ -61,11 +61,25 @@ describe 'visitor visits trip show page' do
     trip1 = Trip.create(name: 'happy trip')
 
     hike1 = trip1.trails.create(name:'one', address:'123', length: 1)
-    hike2 = trip1.trails.create(name:'one', address:'124', length: 2)
-    hike3 = trip1.trails.create(name:'one', address:'125', length: 3)
+    hike2 = trip1.trails.create(name:'two', address:'124', length: 2)
+    hike3 = trip1.trails.create(name:'three', address:'125', length: 3)
 
     visit trip_path(trip1)
 
     expect(page).to have_content("Shortest Hiking Distance: #{Trail.shortest_hiking_distance}")
+  end
+
+  it 'can link to a trail page' do
+    trip1 = Trip.create(name: 'happy trip')
+
+    hike1 = trip1.trails.create(name:'one', address:'123', length: 1)
+    hike2 = trip1.trails.create(name:'two', address:'124', length: 2)
+    hike3 = trip1.trails.create(name:'three', address:'125', length: 3)
+
+    visit trip_path(trip1)
+
+    click_on "#{hike1.name}"
+
+    expect(current_path).to eq(trail_path(hike1))
   end
 end
