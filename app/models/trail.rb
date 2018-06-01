@@ -17,4 +17,8 @@ class Trail < ApplicationRecord
   def self.shortest_hiking_distance
     minimum(:length)
   end
+
+  def total_trips
+    trips.count
+  end
 end

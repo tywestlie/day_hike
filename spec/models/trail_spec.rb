@@ -46,4 +46,17 @@ describe Trail do
       expect(Trail.shortest_hiking_distance).to eq(shortest)
     end
   end
+
+  describe 'instance methods' do
+    it 'can calculate total associated trips' do
+      trip1 = Trip.create(name: 'happy trip')
+      trip2 = Trip.create(name: 'sad trip')
+
+      hike1 = trip1.trails.create!(name:'one', address:'123', length: 1)
+      hike2 = trip1.trails.create!(name:'two', address:'124', length: 2)
+      hike3 = trip1.trails.create!(name:'three', address:'125', length: 3)
+
+      expect(hike1.total_trips).to eq(1)
+    end
+  end
 end

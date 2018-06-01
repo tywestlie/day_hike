@@ -1,0 +1,7 @@
+<h1><%=@trail.name %></h1>
+trip count for this trail: <%= @trail.total_trips %>
+
+ <% @trail.trips.each do |trip| %>
+  connected trip: <%= trip.name %>
+  trip length: <%= trip.trip_length %>
+  <% end %>
